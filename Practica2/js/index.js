@@ -2,7 +2,13 @@
 
 console.log("listen");
 
+
+var orden1 = new Orden();
+
+
+
 function enviar(){
+    
     const forma = document.getElementById('forma');
     let tecladotipo = forma['tecladotipo'];
     let tecladomarca = forma['tecladomarca'];
@@ -22,17 +28,15 @@ function enviar(){
 
     let computadora1 = new Computadora(compunombre.value, monitor1.toString(), teclado1.toString(), raton1.toString());
 
-    let orden1 = new Orden();
     orden1.agregarComputadora(computadora1.toString());
     let result = orden1.toString();
-    //console.log(result)
-    let str = `<table class="table table-sm">\n<thead class="table-dark"><tr>\n<th>Clase</th>\n<th>Constructor</th>\n<th>Dato</th>\n</tr>\n</thead>\n`;
-    
-    str += `<th class="text-center table-success" colspan="3" scope="rowgroup">ORDEN</th>`;
+    let str = `<table class="table table-sm" colspan="3">\n`;
+    str += `<th class="text-center table-success" colspan="3" scope="rowgroup">ORDEN</th>\n`;
     str += `<tr>\n<td>Orden</td>\n<td>idOrden</td>\n<td>${result[0]}</td>\n</tr>\n`;
     
     for (let index = 0; index < result[1].length; index++) {
         const element = result[1][index];
+        str += `<th class="text-center table-dark" colspan="3" scope="rowgroup">COMPUTADORA NO.${index+1}</th>\n<tr></tr>`;
         str += `<th class="text-center table-success" colspan="3" scope="rowgroup">COMPUTADORA</th>`;
         str += `<tr>\n<td>Computadora</td>\n<td>idComputadora</td>\n<td>${element[0]}</td>\n</tr>\n`;
         str += `<tr>\n<td>Computadora</td>\n<td>Nombre</td>\n<td>${element[1]}</td>\n</tr>\n`;
@@ -51,11 +55,9 @@ function enviar(){
         str += `<tr>\n<td>Raton</td>\n<td>idRaton</td>\n<td>${element[4][0]}</td>\n</tr>\n`;
         str += `<tr>\n<td>Raton</td>\n<td>TipoEntrada</td>\n<td>${element[4][1]}</td>\n</tr>\n`;
         str += `<tr>\n<td>Raton</td>\n<td>Marca</td>\n<td>${element[4][2]}</td>\n</tr>\n`;
-        
     }
-    str += `</table>\n`
+    str += `</table>\n`;
+    
     document.getElementById('result').innerHTML = `${str}`;
 
 } 
-
-
